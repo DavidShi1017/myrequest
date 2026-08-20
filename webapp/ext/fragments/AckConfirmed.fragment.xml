@@ -4,6 +4,6 @@
             id="ackConfirmed"
             selected="{AckConfirmed}"
             text="I confirm the data is accurate"
-            enabled="{= ${Status} === 'New' }"/>
+            enabled="{ui>/isEditable}"/>
     </VBox>
 </core:FragmentDefinition>

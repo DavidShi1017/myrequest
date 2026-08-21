@@ -1,3 +1,4 @@
+/* global Promise */
 sap.ui.define(["sap/ui/core/mvc/ControllerExtension", "sap/m/MessageBox"], function (ControllerExtension, MessageBox) {
 	"use strict";
 
@@ -5,13 +6,15 @@ sap.ui.define(["sap/ui/core/mvc/ControllerExtension", "sap/m/MessageBox"], funct
 		override: {
 			editFlow: {
 				onBeforeSave: function (oContext) {
-					if (!oContext.getProperty("AckConfirmed")) {
-						var sMessage = this.base.getExtensionAPI().getModel("i18n").getResourceBundle().getText("ackConfirmedRequired");
+					var oView = this.getView();
+					var oBindingContext = oView.getBindingContext();
+					if (!oBindingContext.getProperty("AckConfirmed")) {
+						var sMessage = "Please confirm the declaration before saving.";
 						MessageBox.error(sMessage);
-						throw new Error(sMessage);
+						return Promise.reject(new Error(sMessage));
 					}
 
-					return undefined;
+					return Promise.resolve();
 				}
 			}
 		}

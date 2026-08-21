@@ -3,7 +3,7 @@
         <CheckBox
             id="ackConfirmed"
             selected="{AckConfirmed}"
-            text="I confirm the data is accurate"
+            text="I hereby certify that, to the best of my knowledge, the information provided is true and accurate. I have contacted the supplier and conducted due diligence to confirm that these details are correct."
             enabled="{ui>/isEditable}"/>
     </VBox>
 </core:FragmentDefinition>
